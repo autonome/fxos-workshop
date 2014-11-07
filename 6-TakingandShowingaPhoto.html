@@ -219,6 +219,25 @@
     </section>
   </div></div>
 
+  <div id="file-display" class="slide"><div>
+    <section>
+      <header>
+        <h2>Displaying the Image</h2>
+      </header>
+      <pre><xmp>
+        photoactivity.onsuccess = function () {
+          var photo = this.result;
+          var img = document.createElement('img');
+          img.src = URL.createObjectURL(photo.blob);
+          var list = document.querySelector('.list');
+          list.appendChild(img);
+        };
+      </xmp></pre>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
   <div id="now-what" class="slide"><div>
     <section>
       <header>
@@ -242,10 +261,10 @@
         <h2>Storing Data</h2>
       </header>
       <ul>
-        <li>Generally storing... text, binary
-        <li>That are either... huge or small
-        <li>And a different nature... transient, permanent
-        <li>Each with appropriate homes... disk, database
+        <li>Generally storing... <strong>text, binary</strong>
+        <li>That are either... <strong>huge or small</strong>
+        <li>And a different nature... <strong>transient, permanent</strong>
+        <li>Each with appropriate homes... <strong>disk, database</strong>
       </ul> 
       <footer class="notes">
       </footer>
@@ -258,30 +277,88 @@
         <h2>Data Storage Options</h2>
       </header>
       <ul>
-        <li>Cookies - transient small text data
-        <li>localStorage - persistent key/value pairs
-        <li>IndexedDB - persistent queryable store for lots of data
-        <li>DeviceStorage - persistent storage of files on disk
+        <li><strong>Cookies</strong> - transient small text data
+        <li><strong>localStorage</strong> - persistent key/value pairs
+        <li><strong>IndexedDB</strong> - persistent queryable store for lots of data
+        <li><strong>DeviceStorage</strong> - persistent storage of files on disk
       </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2>What to use?</h2>
+      </header>
+      <ul>
+        <li>Photos are on disk already
+        <li>Metadata is set of text records
+        <li>localStorage blocks UI
+        <li>IndexedDB sounds right
+        <li>But it's a bit heavyweight...
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="localforage" class="slide"><div>
+    <section>
+      <header>
+        <h2>Meet localForage</h2>
+      </header>
+      <ul>
+        <li>IndexedDB (or others) under the hood
+        <li>For key/value pairs
+        <li>Easy API like localStorage
+        <li>Asynchronous - callbacks or Promises
+        <li>https://github.com/mozilla/localForage
+        <li><code><script type="text/javascript" src="js/localforage.js"></script></code>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="localforage-get" class="slide"><div>
+    <section>
+      <header>
+        <h2>Getting your data with localForage</h2>
+      </header>
+      <pre><xmp>
+      var photos = {};
+      localforage.getItem("photos").then(function (result) {
+        if (result) {
+          photos = result;
+        }
+        // print your photos now
+      });
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="localforage-set" class="slide"><div>
+    <section>
+      <header>
+        <h2>Storing data with localForage</h2>
+      </header>
+      <pre><xmp>
+      var photos = {};
+      photos[ photo.name ] = photo;
+      localforage.setItem("photos", photos, function () {
+        alert("Photo saved.");
+      });
+      </xmp></pre> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
 
   <!--
-  <div id="template" class="slide"><div>
-    <section>
-      <header>
-        <h2></h2>
-      </header>
-      <ul>
-        <li>
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
   <div id="template" class="slide"><div>
     <section>
       <header>
