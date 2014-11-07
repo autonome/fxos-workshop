@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US" class="fade">
 <head>
-  <title>Firefox OS Intensive - Activities &amp; Files</title>
+  <title>Firefox OS Intensive - Interacting with Photos</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1274, user-scalable=no">
   <link rel="stylesheet" href="themes/mozilla/styles/style.css">
@@ -11,29 +11,48 @@
 
   <header class="caption">
     <h1>Firefox OS Intensive</h1>
-    <h2>Activities &amp; Files</h2>
+    <h2>Interacting with Photos</h2>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
 
   <div id="cover" class="slide"><div>
     <section>
       <header>
-        <h2>Firefox OS - Activities &amp; Files</h2>
+        <h2>Firefox OS - Interacting with Photos</h2>
       </header>
-      <img src="pictures/activities-files/cover.jpg" class="middle" width="600" alt="Firefox OS">
+      <img src="pictures/interact-photo/cover.jpg" class="middle" width="600" alt="Firefox OS">
       <small class="credits">
-        Photo: <a href="https://www.flickr.com/photos/joshb/2129576223">joshb</a>
+        Photo: <a href="https://www.flickr.com/photos/santheo/2458748720">santheo</a>
       </small>
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="overview" class="slide"><div>
     <section>
       <header>
-        <h2></h2>
+        <h2>What we'll cover...</h2>
       </header>
       <ul>
-        <li>
+        <li>Viewing a photo
+        <li>Deleting a photo
+        <li>Sharing a photo
+        <li>Photographing a photo
+        <li>Ok, not that last one
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="open" class="slide"><div>
+    <section>
+      <header>
+        <h2>Open a Photo</h2>
+      </header>
+      <ul>
+        <li>In a new window
+        <li>Or a lightbox
+        <li>... or a suprising animation
       </ul> 
       <footer class="notes">
       </footer>
@@ -41,19 +60,100 @@
   </div></div>
 
   <!--
-  <div id="template" class="slide"><div>
+  <div id="animation" class="slide"><div>
     <section>
-      <header>
-        <h2></h2>
-      </header>
-      <ul>
-        <li></li>
-      </ul> 
+      <!-- SPIN THAT SHIT -->
+      <img class="image" src="http://makeameme.org/media/templates/120/grumpy_cat.jpg" alt="" width="120" height="120">
       <footer class="notes">
       </footer>
     </section>
   </div></div>
   -->
+
+  <div id="deleting" class="slide"><div>
+    <section>
+      <header>
+        <h2>Delete a Photo</h2>
+      </header>
+      <ul>
+        <li>Using DeviceStorage APIs directly
+        <li>"pictures" to get photo references
+        <li>Look up photo by the path we stored in localForage
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="deleting-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Delete a Photo - Code</h2>
+      </header>
+      <pre><xmp>
+        var photos = navigator.getDeviceStorage("pictures");
+        var trydelete = photos.delete(photoid);
+        trydelete.onsuccess = function () {
+          // The file on device has been deleted.
+          // Don't forget to delete from your metadata
+          // cache as well!
+        };
+        trydelete.onerror = function () {
+          alert("Unable to delete photo");
+        };
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="sharing" class="slide"><div>
+    <section>
+      <header>
+        <h2>Sharing a Photo</h2>
+      </header>
+      <ul>
+        <li>Using DeviceStorage APIs directly
+        <li>"pictures" to get photo references
+        <li>Look up photo by the path we stored in localForage
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="share-activity" class="slide"><div>
+    <section>
+      <header>
+        <h2>Share Activity - Code</h2>
+      </header>
+      <pre><xmp>
+      // From your cache
+      var blob = photos[id].blob;
+      new MozActivity({
+        name: "share",
+        data: {
+          type: "image/*",
+          number: 1,
+          blobs: [blob]
+        }
+      });
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="share-screenshot" class="slide"><div>
+    <section>
+      <header>
+        <h2>Share Activity View</h2>
+      </header>
+      <img src="pictures/interact-photo/share.png" class="middle" width="300" alt="Firefox OS">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
 
   <div class="progress"><div></div></div>
   <script src="scripts/script.js"></script>
