@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en-US" class="fade">
+<head>
+  <title>Firefox OS Intensive - Power &amp; Data</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1274, user-scalable=no">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <link rel="stylesheet" href="styles/workshop.css">
+</head>
+<body class="list">
+
+  <header class="caption">
+    <h1>Firefox OS Intensive</h1>
+    <h2>Power &amp; Data</h2>
+    <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></li>
+  </header>
+
+  <div id="cover" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS - Power &amp; Data</h2>
+      </header>
+      <img src="pictures/powerdata/tesla.jpg" class="middle" width="450" alt="Firefox OS">
+      <small class="credits">
+        Photo: <a href="http://en.wikipedia.org/wiki/Nikola_Tesla">wikipedia</a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="shipped" class="slide"><div>
+    <section>
+      <header>
+        <h2>We shipped Firefox OS!</h2>
+      </header>
+      <ul>
+      <li>to 23 markets
+      <li>in 15 countries
+      <li>more coming
+      <li>more challenging markets
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+      
+  <div id="often" class="slide"><div>
+    <section>
+      <header>
+        <h2>It often looks like this:</h2>
+      </header>
+      <img src="pictures/powerdata/google-offline.png">
+    </section>
+  </div></div>
+
+  <div id="conditions" class="slide"><div>
+    <section>
+      <header>
+        <h2>Power Network Conditions</h2>
+      </header>
+      <ul>
+      <li>Slow networks (3G = 2.1G)</li>
+      <li>Unreliable infrastructure</li>
+      <li>Overloaded base stations</li>
+      <li>Weather</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="users" class="slide"><div>
+    <section>
+      <header>
+        <h2>Users too!</h2>
+      </header>
+      <ul>
+      <li>User research</li>
+      <li>*Very* aware of cost</li>
+      <li>Shut off data</li>
+      <li>Even wifi can cost</li>
+      <li>big opportunity to differentiate</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+      
+  <div id="stack" class="slide"><div>
+    <section>
+      <header>
+        <h2>Full-stack Impact</h2>
+      </header>
+      <ul>
+      <li>Dropped packets</li>
+      <li>Request timeouts</li>
+      <li>Non-functional apps</li>
+      <li>Waste of user's money</li>
+      <li>Battery quickdeath</li>
+      <li>Load on base station</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="unhappy" class="slide"><div>
+    <section>
+      <header>
+        <h2>Unhappy users, unhappy operators</h2>
+      </header>
+      <img src="pictures/powerdata/trike.png">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="research" class="slide"><div>
+    <section>
+      <header>
+        <h2>It turns out...</h2>
+      </header>
+      <ul>
+      <li>Not new problems</li>
+      <li>Lots of research in the field</li>
+      <li>Little being applied on the Web</li>
+      <li>Huge wins possible</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="umich" class="slide"><div>
+    <section>
+      <header>
+        <h2>Graduate Research</h2>
+      </header>
+      <ul>
+      <li>University of Michigan</li>
+      <li>Graduate research lab on mobile performance</li>
+      <li>Mostly focused on Android on fast networks</li>
+      <li>But a lot of the findings apply...</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="tail" class="slide"><div>
+    <section>
+      <header>
+        <h2>Tail Optimization</h2>
+      </header>
+      <ul>
+      <li>Radio chips: high/low power mode</li>
+      <li>Radio Resource Controls (RRC) timers</li>
+      <li>High power mode stays on after activity</li>
+      <li>wasted power: "tail energy"</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="fast" class="slide"><div>
+    <section>
+      <header>
+        <h2>Fast Dormancy</h2>
+      </header>
+      <ul>
+      <li>Tell chip that we're done</li>
+      <li>Little/no access via chipset vendors</li>
+      <li>Can infer via power measurement</li>
+      <li>But variable per chipset/network</li>
+      <li>Even so, problematic to have that access</li>
+      <li>"Yo, I'm done."</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="latency" class="slide"><div>
+    <section>
+      <header>
+        <h2>High Latency</h2>
+      </header>
+      <ul>
+      <li>Local passive measurement of cellular load</li>
+      <li>Complex, requires low-level radio access</li>
+      <li>Could measure requests on ongoing basis?</li>
+      <li>Still requires high-level positive patterns</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="weak" class="slide"><div>
+    <section>
+      <header>
+        <h2>Weak Link</h2>
+      </header>
+      <ul>
+      <li>Bars don't tell the whole story</li>
+      <li>Strong link != low latency</li>
+      <li>Weak link != high latency</li>
+      <li>Neither signal throughput well</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="solutions" class="slide"><div>
+    <section>
+      <header>
+        <h2>What to Deux</h2>
+      </header>
+      <ul>
+      <li>We need to think creatively about how to address these problems in a web-developer-friendly way that quantifiably impacts users.</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="web" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web Sweet Spot</h2>
+      </header>
+      <ul>
+      <li>Tail energy, weak signal, high latency</li>
+      <li>App developers shouldn't have to care</li>
+      <li>Positive patterns for built-in awareness</li>
+      <li>Or at least make it super easy</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="muse" class="slide"><div>
+    <section>
+      <header>
+        <h2>Muse - PSU Student Project</h2>
+      </header>
+      <ul>
+      <li>https://github.com/mmes2/muse</li>
+      </ul> 
+      <img src="pictures/powerdata/muse.png">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="purpose" class="slide"><div>
+    <section>
+      <header>
+        <h2>Muse - Purpose</h2>
+      </header>
+      <ul>
+      <li>Experiment based on the research our teams did in Brasil, Columbia, Thailand, India</li>
+      <li></li>
+      <li>News reader app that targets new smartphone user, mostly offline, commutes a lot.</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="features" class="slide"><div>
+    <section>
+      <header>
+        <h2>Muse - Features</h2>
+      </header>
+      <ul>
+      <li>Self-configuring (geolocation)</li>
+      <li>Auto populating</li>
+      <li>Offline reading</li>
+      <li>Content skinny</li>
+      <li>Network condition aware</li>
+      <li>JUST WORKS</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="helpers" class="slide"><div>
+    <section>
+      <header>
+        <h2>Helper Libraries</h2>
+      </header>
+      <ul>
+      <li>Passive network info collector</li>
+      <li>Network info database</li>
+      <li>Network analysis</li>
+      <li>= Predict opportunity windows</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="experiments" class="slide"><div>
+    <section>
+      <header>
+        <h2>More Experiments</h2>
+      </header>
+      <ul>
+      <li>Non-critical requests</li>
+      <li>Proactive: piggybacking</li>
+      <li>Last-network-access timestamp</li>
+      <li>"Now is good" events</li>
+      <li>Low-budget latency analysis</li>
+      <li>XHR option to defer</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="research" class="slide"><div>
+    <section>
+      <header>
+        <h2> Other Research </h2>
+      </header>
+      <ul>
+      <li>https://wiki.mozilla.org/FirefoxOS/Research</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <!--
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2></h2>
+      </header>
+      <ul>
+        <li></li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+  -->
+
+  <div class="progress"><div></div></div>
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
+

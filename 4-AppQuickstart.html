@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang="en-US" class="fade">
+<head>
+  <title>Firefox OS Intensive - App Quickstart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1274, user-scalable=no">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <link rel="stylesheet" href="styles/workshop.css">
+</head>
+<body class="list">
+
+  <header class="caption">
+    <h1>Firefox OS Intensive</h1>
+    <h2>App Quickstart</h2>
+    <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
+  </header>
+
+  <div id="cover" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS - App Quickstart</h2>
+      </header>
+      <img src="pictures/quickstart/cheetahdragon.jpg" class="middle" width="600" alt="Firefox OS">
+      <small class="credits">
+        Photo: <a href="https://www.flickr.com/photos/gemmerich/8625699579/">gemmerich</a>
+      </small>
+    </section>
+  </div></div>
+
+  <!--
+  <div id="app-overview" class="slide"><div>
+    <section>
+      <header>
+        <h2>Dude, go to the other slides.</h2>
+      </header>
+      <ul>
+        <li><a href="firefoxos-bootcamp/1-fxos-overview.html#/5">App Overview</a>
+        <li><a href="firefoxos-bootcamp/1-fxos-overview.html#/6">App Manifest</a>
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="app-overview" class="slide"><div>
+    <section>
+      <header>
+        <h2>Dude, go to the other slides.</h2>
+      </header>
+      <ul>
+        <li><a href="firefoxos-bootcamp/1-fxos-overview.html#/5">App Overview</a>
+        <li><a href="firefoxos-bootcamp/1-fxos-overview.html#/6">App Manifest</a>
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+  -->
+
+  <div id="zomgopenapps" class="slide shout"><div>
+    <section>
+      <header>
+        <h2>Open Web Apps</h2>
+      </header>
+    <footer class="notes">
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="fxapps" class="slide"><div>
+    <section>
+      <header>
+        <h2>Apps</h2>
+      </header>
+      <img src="pictures/fxos/apps.png" class="middle" height="400" 
+           alt="Firefox OS apps">
+      <p class="demourl">
+        <a href="https://marketplace.firefox.com/developers/docs/concept">What makes a great app?</a>
+      </p>
+    <footer class="notes">
+      Apps are the hot new thing - except they are not. In essence an app is a thing that does one thing well and is contained in itself. Instead of opening a web site and having it next to many other tabs you open an app and it is the main focus of your attention. People love this. It gives users a catered experience for one task without being distracting. The good news is that the web technologies around HTML5 are flexible enough to cover both cases: you can create a web site but also very easily turn it into an app. 
+    </footer>
+    </section>
+  </div></div>
+
+   <div id="appsbullets" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS Apps?</h2>
+      </header>
+      <ul class="longlist">
+        <li>Apps for Firefox OS are HTML5 apps with an extra manifest file</li>
+        <li>The manifest defines the extra access to hardware you require, the icons and the location of your code</li>
+        <li>They are secured by a three layer security model allowing more or less access depending on the location of the app (hosted vs. delivered from the marketplace)</li>
+        <li>They work offline and work across other platforms (when converted)</li>
+        <li>You can find and install them either from the web or the marketplace</li>
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="manifest" class="slide"><div>
+    <section>
+      <header>
+        <h2>Defined by manifest</h2>
+      </header>
+      <pre>
+        <code>{</code>
+        <code>  "name": "My App",</code>
+        <code>  "description": "My elevator pitch goes here",</code>
+        <code>  "launch_path": "/index.html",</code>
+        <code>  "icons": { "128": "/img/icon-128.png" },</code>
+        <code>  "developer": {</code>
+        <code>    "name": "Your name or organization",</code>
+        <code>    "url": "http://your-homepage-here.org"</code>
+        <code>  }</code>
+        <code>}</code>
+      </pre>
+      <p class="demourl"><a href="https://developer.mozilla.org/en-US/docs/Apps/Manifest">App manifest</a></p>
+    <footer class="notes">
+      The main step to turn an HTML5 page/app into a Firefox App is to define an app manifest. These are simple files in JSON defining the name of your app, where the icons are and what permissions you need for the application to work. They need to be sent with the right MIME type on the server and get submitted to the Mozilla marketplace. See them as a quick description of your app.
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="threekinds" class="slide"><div>
+    <section>
+      <header>
+        <h2>Three levels of access&hellip;</h2>
+      </header>
+      <ul>
+        <li><mark>Hosted apps</mark> - stored on your server, easy to upgrade, limited access.</li>
+        <li><mark>Privileged apps</mark> - reviewed by the App store, packaged and signed</li>
+        <li><mark>Certified apps</mark> - part of the OS, only by Mozilla and partners</li>
+      </ul>
+      <p class="demourl"><a href="https://developer.mozilla.org/en-US/docs/Apps/App_permissions">App permissions</a></p>
+    <footer class="notes">
+      There are three different type of apps in Firefox OS: Hosted Apps, Privileged apps and Certified apps. The first kind is hosted on your own server and has access to a limited amount of extra functionality Firefox OS offers on top of what HTML5 gives you. Privileged apps have much more access to the hardware and must be hosted by Mozilla. Certified apps are part of the operating system and are only built by Mozilla and partners.
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="installapp" class="slide"><div>
+    <section>
+      <header>
+        <h2>Install apps from the web</h2>
+      </header>
+        <pre>
+        <code>var installapp = navigator.mozApps.install(manifestURL);</code>
+        <code>installapp.onsuccess = function(data) {</code>
+        <code>  // App is installed</code>
+        <code>};</code>
+        <code>installapp.onerror = function() {</code>
+        <code> // App wasn't installed, info is in </code>
+        <code> // installapp.error.name</code>
+        <code>};</code>
+        </pre>
+      <footer class="notes">
+        Installing applications from the web is possible by using the open web apps API, which is part of the WebAPI work in Mozilla. You can test if navigator.mozApps is supported and then create a button that calls the install method pointing to the URL of the manifest file of the app to be installed. You then get onsuccess and onerror handlers to deal with the returned objects of the install process. This means that any mobile friendly web site can be turned into an app in a few minutes, and that all the work you put into making your sites found in search engines wasn't wasted, but actually is now advertising for your app.
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2>SO IT BEGINS...</h2>
+      </header>
+      <ul>
+        <li>Create a new packaged app in WebIDE</li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <!--
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2></h2>
+      </header>
+      <ul>
+        <li></li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+  -->
+
+  <div class="progress"><div></div></div>
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
