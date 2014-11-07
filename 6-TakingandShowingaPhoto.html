@@ -219,7 +219,7 @@
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="now-what" class="slide"><div>
     <section>
       <header>
         <h2>Now what?</h2>
@@ -229,19 +229,39 @@
         <li>We have it's metadata.
         <li>We want to show it in the app.
         <li>But <strong>only</strong> the files on disk that <strong>we</strong> saved.
+        <li>So we need to store the metadata...
       </ul> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="storage" class="slide"><div>
     <section>
       <header>
-        <h2></h2>
+        <h2>Storing Data</h2>
       </header>
       <ul>
-        <li>
+        <li>Generally storing... text, binary
+        <li>That are either... huge or small
+        <li>And a different nature... transient, permanent
+        <li>Each with appropriate homes... disk, database
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="storage-options" class="slide"><div>
+    <section>
+      <header>
+        <h2>Data Storage Options</h2>
+      </header>
+      <ul>
+        <li>Cookies - transient small text data
+        <li>localStorage - persistent key/value pairs
+        <li>IndexedDB - persistent queryable store for lots of data
+        <li>DeviceStorage - persistent storage of files on disk
       </ul> 
       <footer class="notes">
       </footer>
