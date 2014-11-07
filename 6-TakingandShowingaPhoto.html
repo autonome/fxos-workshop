@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US" class="fade">
 <head>
-  <title>Firefox OS Intensive - Activities &amp; Files</title>
+  <title>Firefox OS Intensive - Taking and Storing Photos</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1274, user-scalable=no">
   <link rel="stylesheet" href="themes/mozilla/styles/style.css">
@@ -11,19 +11,227 @@
 
   <header class="caption">
     <h1>Firefox OS Intensive</h1>
-    <h2>Activities &amp; Files</h2>
+    <h2>Taking and Storing Photos</h2>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
 
   <div id="cover" class="slide"><div>
     <section>
       <header>
-        <h2>Firefox OS - Activities &amp; Files</h2>
+        <h2>Firefox OS - Taking and Storing Photos</h2>
       </header>
       <img src="pictures/taking-photo/cover.jpg" class="middle" width="600" alt="Firefox OS">
       <small class="credits">
         Photo: <a href="https://www.flickr.com/photos/tanaka/2345575389">tanaka</a>
       </small>
+    </section>
+  </div></div>
+
+  <div id="overview" class="slide"><div>
+    <section>
+      <header>
+        <h2>What we'll cover...</h2>
+      </header>
+      <ul>
+        <li>Basic structure
+        <li>Web Activities
+        <li>Interacting with the Camera
+        <li>Storing Data
+        <li>Accessing Data
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="basic" class="slide"><div>
+    <section>
+      <header>
+        <h2>Create a Basic Structure</h2>
+      </header>
+      <ul>
+        <li>Header
+        <li>Camera button
+        <li>Photos
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="basic-markup" class="slide"><div>
+    <section>
+      <header>
+        <h2>Basic Structure Markup:</h2>
+      </header>
+      <pre><xmp>
+        <header class="blue">
+          <h1 class="title">Photo uploader</h1>
+        </header>
+        <section>
+          <div class="shootphoto">
+          </div>
+          <div class="grid">
+          </div>
+        <section>
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="zomgactivities" class="slide shout"><div>
+    <section>
+      <header>
+        <h2>Web Activities</h2>
+      </header>
+    <footer class="notes">
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="webactbullets" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web Activities</h2>
+      </header>
+      <ul class="longlist">
+        <li>A proposal to get access to hardware by keeping the user in control instead of authenticating on their behalf</li>
+        <li>Comparable to Android Intents, but with a more limited scope that makes sense for the web</li>
+        <li>A technique to create an ecosystem of apps on the device - apps can register as handlers for certain tasks and other apps use them</li>
+        <li>A simple way to get access to hardware and data without needing to package your app and host it from the market</li>
+        <li>Highly secure as nothing happens without the user initiating it</li>
+      </ul>
+      <p class="demourl">
+        <a href="https://wiki.mozilla.org/WebAPI/WebActivities">WebActivies Wiki</a>
+      </p>      
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="activities" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web activities</h2>
+      </header>
+      <ul class="lots">
+        <li>configure</li>
+        <li>costcontrol</li>
+        <li>dial</li>
+        <li>open</li>
+        <li>pick</li>
+        <li>record</li>
+        <li>save-bookmark</li>
+        <li>share</li>
+        <li>view</li>
+        <li>new, f.e type: “websms/sms” or “webcontacts/contact” </li>
+      </ul>
+    <footer class="notes">
+      If you want to access the camera or the address book without packaging your application, there is an alternative called Web Activities. These are much like Web Intents were for Chrome, but more focused on real use cases of the web rather than Android. Using Web Activities you can access the hardware without having to authenticate on the user's behalf. Instead, the users get prompted to use the apps they always use to give you what your app wants.
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="camera-markup" class="slide"><div>
+    <section>
+      <header>
+        <h2>Camera Markup Example:</h2>
+      </header>
+      <pre><xmp>
+        <button id="takephoto">Take a photo!</button>
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="camera-activity" class="slide"><div>
+    <section>
+      <header>
+        <h2>Camera Activity</h2>
+      </header>
+      <pre><xmp>
+      var photoactivity = new MozActivity({
+        name: "pick",
+        data: {
+          type: "image/jpeg"
+        }
+      });
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="camera-activity-handlers" class="slide"><div>
+    <section>
+      <header>
+        <h2>Camera Activity Handlers</h2>
+      </header>
+      <pre><xmp>
+      // Handle the activity's success event
+      photoactivity.onsuccess = function () {
+        var photo = this.result;
+        console.log("Got photo", photo);
+      };
+      // Handle the activity's error event
+      photoactivity.onerror = function () {
+        console.log("error", this.error);
+      };
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="activity-results" class="slide"><div>
+    <section>
+      <header>
+        <h2>Handling Activity Results</h2>
+      </header>
+      <ul>
+        <li><code>this.result</code> is an object
+        <li>That object is defined by the Activity
+        <li>It will have properties specific to the Activity
+        <li>Camera has set <code>this.result.photo</code> to a File object
+        <li>It represents the actual file the camera wrote to the SD card
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="file-properties" class="slide"><div>
+    <section>
+      <header>
+        <h2>File Properties</h2>
+      </header>
+      <ul>
+        <li>File is an extended Blob
+        <li>size - in bytes (Blob)
+        <li>type - MIME type (Blob)
+        <li>name - file path (File)
+        <li>lastModifiedDate - Date object (File)
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2>Now what?</h2>
+      </header>
+      <ul>
+        <li>The file is on disk.
+        <li>We have it's metadata.
+        <li>We want to show it in the app.
+        <li>But <strong>only</strong> the files on disk that <strong>we</strong> saved.
+      </ul> 
+      <footer class="notes">
+      </footer>
     </section>
   </div></div>
 
@@ -39,6 +247,47 @@
       </footer>
     </section>
   </div></div>
+
+  <!--
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2></h2>
+      </header>
+      <ul>
+        <li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2></h2>
+      </header>
+      <ul>
+        <li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="template" class="slide"><div>
+    <section>
+      <header>
+        <h2></h2>
+      </header>
+      <ul>
+        <li>
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+  -->
 
   <!--
   <div id="template" class="slide"><div>
