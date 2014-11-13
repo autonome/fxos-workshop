@@ -59,16 +59,67 @@
     </section>
   </div></div>
 
-  <!--
-  <div id="animation" class="slide"><div>
+  <div id="open-code" class="slide"><div>
     <section>
-      <!-- SPIN THAT SHIT -->
-      <img class="image" src="http://makeameme.org/media/templates/120/grumpy_cat.jpg" alt="" width="120" height="120">
+      <header>
+        <h2>Open Photo in a New View - Code</h2>
+      </header>
+      <pre><xmp>
+      img.addEventListener("click", function () {
+        // Send photo name as the hash fragment
+        window.location.replace("card.html#" + photo.name);
+      }, false);
+      </xmp></pre> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
-  -->
+
+  <div id="card-markup" class="slide"><div>
+    <section>
+      <header>
+        <h2>Photo Card - Markup</h2>
+      </header>
+      <pre><xmp>
+        <div class="card">
+          <img id="cardimg" src="" alt="card image">
+        </div>
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="show-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Open a Photo - Code</h2>
+      </header>
+      <pre><xmp>
+      var photoid = window.location.hash.substr(1);
+      var photo = null;
+      var cardimg = document.getElementById("cardimg")
+      localforage.getItem("photos").then(function (result) {
+        photo = result[photoid];
+        var url = URL.createObjectURL(photo.blob);
+        cardimg.setAttribute("src", url);
+      });
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="deleting-perms" class="slide"><div>
+    <section>
+      <header>
+        <h2>Device Storage Permissions</h2>
+      </header>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
 
   <div id="deleting" class="slide"><div>
     <section>
@@ -77,13 +128,18 @@
       </header>
       <ul>
         <li>Using DeviceStorage APIs directly
+        <li>Requires permission
         <li>"pictures" to get photo references
         <li>Look up photo by the path we stored in localForage
+        <li>So add a new button with a click handler
+        <li>(Familiar pattern yet?!)
       </ul> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
+
+
 
   <div id="deleting-code" class="slide"><div>
     <section>
@@ -92,11 +148,11 @@
       </header>
       <pre><xmp>
         var photos = navigator.getDeviceStorage("pictures");
-        var trydelete = photos.delete(photoid);
+        var trydelete = photos.delete(photo.blob.name);
         trydelete.onsuccess = function () {
-          // The file on device has been deleted.
-          // Don't forget to delete from your metadata
-          // cache as well!
+          delete photos[photoid];
+          localforage.setItem("photos", photos);
+          window.location.replace("index.html");
         };
         trydelete.onerror = function () {
           alert("Unable to delete photo");
@@ -113,9 +169,9 @@
         <h2>Sharing a Photo</h2>
       </header>
       <ul>
-        <li>Using DeviceStorage APIs directly
-        <li>"pictures" to get photo references
-        <li>Look up photo by the path we stored in localForage
+        <li>Another Web Activity!
+        <li>"share"
+        <li>Send the blob from our cache
       </ul> 
       <footer class="notes">
       </footer>
@@ -128,7 +184,6 @@
         <h2>Share Activity - Code</h2>
       </header>
       <pre><xmp>
-      // From your cache
       var blob = photos[id].blob;
       new MozActivity({
         name: "share",

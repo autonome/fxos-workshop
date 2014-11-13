@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US" class="fade">
 <head>
-  <title>Firefox OS Intensive - Activities &amp; Files</title>
+  <title>Firefox OS Intensive - Uploading a Photo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1274, user-scalable=no">
   <link rel="stylesheet" href="themes/mozilla/styles/style.css">
@@ -11,49 +11,138 @@
 
   <header class="caption">
     <h1>Firefox OS Intensive</h1>
-    <h2>Activities &amp; Files</h2>
+    <h2>Uploading a Photo</h2>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
 
   <div id="cover" class="slide"><div>
     <section>
       <header>
-        <h2>Firefox OS - Activities &amp; Files</h2>
+        <h2>Firefox OS - Uploading a Photo</h2>
       </header>
-      <img src="pictures/activities-files/cover.jpg" class="middle" width="600" alt="Firefox OS">
+      <img src="pictures/upload-photo/cover.jpg" class="middle" width="600" alt="Firefox OS">
       <small class="credits">
-        Photo: <a href="https://www.flickr.com/photos/joshb/2129576223">joshb</a>
+        Photo: <a href="https://www.flickr.com/photos/trainor/1229138273">trainor</a>
       </small>
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="overview" class="slide"><div>
     <section>
       <header>
-        <h2></h2>
+        <h2>What we'll cover...</h2>
       </header>
       <ul>
-        <li>
+        <li>Uploading a file...
+        <li>To Imgur, using their API...
+        <li>With XMLHTTPRequest...
+        <li>And the HTML5 FormData API...
+        <li>TODO: Checking network status...
+        <li>TODO: And wrapping it up as a share Activity handler.
       </ul> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
 
-  <!--
-  <div id="template" class="slide"><div>
+  <div id="imgur" class="slide"><div>
     <section>
       <header>
-        <h2></h2>
+        <h2>Imgur API</h2>
       </header>
       <ul>
-        <li></li>
+        <li>https://api.imgur.com/
+        <li>Register your app
+        <li>Choose "Anonymous usage without authorization"
+        <li>For callback URL, put a sample URL.
+        <li>Imgur supports cross-domain XHR!
       </ul> 
       <footer class="notes">
       </footer>
     </section>
   </div></div>
-  -->
+
+  <div id="file-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Get File, Prepare for Upload</h2>
+      </header>
+      <pre><xmp>
+        var file = photo.blob;
+
+        // Create object for form data
+        var fd = new FormData();
+
+        // Add file to form data
+        fd.append("image", file);
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="upload-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Upload to Imgur</h2>
+      </header>
+      <pre><xmp>
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://api.imgur.com/3/image.json");
+        xhr.onload = function() {
+          var data = JSON.parse(xhr.responseText).data;
+          var imgurURL = data.link;
+          console.log(imgurURL);
+        }
+        var clientId = 'Client-ID 1ca3a1cf63cc8bc'; 
+        xhr.setRequestHeader('Authorization', clientId);
+        xhr.send(fd);
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="network" class="slide"><div>
+    <section>
+      <header>
+        <h2>Network</h2>
+      </header>
+      <ul>
+        <li>Check online status
+        <li>Measure latency
+        <li>Check signal
+        <li>Check connection type
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="activity-handler" class="slide"><div>
+    <section>
+      <header>
+        <h2>Implement as a Web Activity Handler</h2>
+      </header>
+      <pre><xmp>
+        navigator.mozSetMessageHandler('activity', function(activityRequest) {
+          var option = activityRequest.source;
+          if (option.name === "share") {
+            console.log(option.data);
+            sentToImgur(
+            // Send back the result
+            if (picture) {
+              activityRequest.postResult(picture);
+            } else {
+              activityRequest.postError("Unable to provide a picture");
+            }
+          }
+        });
+      </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
 
   <div class="progress"><div></div></div>
   <script src="scripts/script.js"></script>
