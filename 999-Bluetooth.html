@@ -27,7 +27,7 @@
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="overview" class="slide"><div>
     <section>
       <header>
         <h2>Bluetooth - Ubiquitious and Awesome</h2>
@@ -38,6 +38,131 @@
         <li>It's wireless
         <li>It's personable
         <li>It's WAY cooler than NFC
+        <li>XXX add next slide with what's currently supported
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="setup" class="slide"><div>
+    <section>
+      <header>
+        <h2>Bluetooth - Setup</h2>
+      </header>
+      <ul>
+        <li>Settings > Bluetooth
+        <li>Name your device something unique
+        <li>"Visible to all" - 2 minutes
+        <li>Pair with all your friends
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="sharing" class="slide"><div>
+    <section>
+      <header>
+        <h2>Sharing</h2>
+      </header>
+      <ul>
+        <li>Contacts
+        <li>Music
+        <li>Videos
+        <li>Photos
+        <li>URLS
+        <li>Anything shareable
+        <li>(APPS! COMING SOON!)
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="sharing-activity" class="slide"><div>
+    <section>
+      <header>
+        <h2>Sharing - Code Sample</h2>
+      </header>
+      <code>
+      // From your cache
+      var blob = photos[id].blob;
+      new MozActivity({
+        name: "share",
+        data: {
+          type: "image/*",
+          number: 1,
+          blobs: [blob]
+        }
+      });
+      </code>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+
+  <div id="sharing-bulk" class="slide"><div>
+    <section>
+      <header>
+        <h2>Sharing single things is clumsy</h2>
+      </header>
+      <ul>
+        <li>Takes a while
+        <li>Write apps for bulk sharing
+        <li>Share a selection of photos
+        <li>Share a whole music album
+        <li>Experiment with certified APIs
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="contacts" class="slide"><div>
+    <section>
+      <header>
+        <h2>Bluetooth + Contacts!</h2>
+      </header>
+      <ul>
+        <li>Bluetooth connections are often people
+        <li>... people you know well!
+        <li>What if we map Bluetooth connections...
+        <li>... to people in your Contacts?
+        <li>Could then build in-person social apps.
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="messaging" class="slide"><div>
+    <section>
+      <header>
+        <h2>In-Person Offline Messaging</h2>
+      </header>
+      <ul>
+        <li>If we can share media...
+        <li>Text should be even easier
+        <li>Bluetooth APIs are certified
+        <li>Maybe over files until data channel API exists?
+        <li>Experiment!
+      </ul> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="certified-api" class="slide"><div>
+    <section>
+      <header>
+        <h2>Certified API</h2>
+      </header>
+      <ul>
+        <li>XXX overview
+        <li>XXX manifest permissions
+        <li>XXX follow w/ some code samples
       </ul> 
       <footer class="notes">
       </footer>
