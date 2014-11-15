@@ -10,15 +10,15 @@
 <body class="list">
 
   <header class="caption">
-    <h1>Firefox OS Intensive</h1>
-    <h2>Taking and Storing Photos</h2>
+    <h1><a href="0-Index.html">Firefox OS Intensive Workshop</a></h1>
+    <h2>Taking Photos</h2>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
 
   <div id="cover" class="slide"><div>
     <section>
       <header>
-        <h2>Firefox OS - Taking and Storing Photos</h2>
+        <h2>Firefox OS - Taking Photos</h2>
       </header>
       <img src="pictures/taking-photo/cover.jpg" class="middle" width="600" alt="Firefox OS">
       <small class="credits">
@@ -33,11 +33,9 @@
         <h2>What we'll cover...</h2>
       </header>
       <ul>
-        <li>Basic structure
+        <li>Basic app structure
         <li>Web Activities
         <li>Interacting with the Camera
-        <li>Storing Data
-        <li>Accessing Data
       </ul> 
       <footer class="notes">
       </footer>
@@ -254,178 +252,6 @@
       </footer>
     </section>
   </div></div>
-
-  <div id="storage" class="slide"><div>
-    <section>
-      <header>
-        <h2>Storing Data</h2>
-      </header>
-      <ul>
-        <li>Generally storing... <strong>text, binary</strong>
-        <li>That are either... <strong>huge or small</strong>
-        <li>And a different nature... <strong>transient, permanent</strong>
-        <li>Each with appropriate homes... <strong>disk, database</strong>
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="storage-options" class="slide"><div>
-    <section>
-      <header>
-        <h2>Data Storage Options</h2>
-      </header>
-      <ul>
-        <li><strong>Cookies</strong> - transient small text data
-        <li><strong>localStorage</strong> - persistent key/value pairs
-        <li><strong>IndexedDB</strong> - persistent queryable store for lots of data
-        <li><strong>DeviceStorage</strong> - persistent storage of files on disk
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="template" class="slide"><div>
-    <section>
-      <header>
-        <h2>What to use?</h2>
-      </header>
-      <ul>
-        <li>Photos are on disk already
-        <li>Metadata is set of text records
-        <li>localStorage blocks UI
-        <li>IndexedDB sounds right
-        <li>But it's a bit heavyweight...
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="localforage" class="slide"><div>
-    <section>
-      <header>
-        <h2>Meet localForage</h2>
-      </header>
-      <ul>
-        <li>IndexedDB (or others) under the hood
-        <li>For key/value pairs
-        <li>Easy API like localStorage
-        <li>Asynchronous - callbacks or Promises
-        <li>https://github.com/mozilla/localForage
-        <li><code><script type="text/javascript" src="js/localforage.js"></script></code>
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="localforage-get" class="slide"><div>
-    <section>
-      <header>
-        <h2>Getting your data with localForage</h2>
-      </header>
-      <pre><xmp>
-      var photos = {};
-      localforage.getItem("photos").then(function (result) {
-        if (result) {
-          photos = result;
-          // we'll print photos here next
-        }
-        else {
-          localforage.setItem("photos", photos);
-        }
-      });
-      </xmp></pre> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="localforage-set" class="slide"><div>
-    <section>
-      <header>
-        <h2>Storing data with localForage</h2>
-      </header>
-      <pre><xmp>
-      photos[ photo.name ] = photo;
-      localforage.setItem("photos", photos, function () {
-        alert("Photo saved.");
-      });
-      </xmp></pre> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="show-all" class="slide"><div>
-    <section>
-      <header>
-        <h2>Displaying all photos</h2>
-      </header>
-      <pre><xmp>
-      for (var name in photos) {
-        var photo = photos[name]; 
-        var img = document.createElement('img');
-        img.src = URL.createObjectURL(photo.blob);
-        var list = document.querySelector('.list');
-        list.appendChild(img);
-      }
-      </xmp></pre> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="hack" class="slide"><div>
-    <section>
-      <header>
-        <h2>Put your hands together</h2>
-      </header>
-      <ul>
-        <li>You can now:
-        <li>Launch camera and get a photo
-        <li>Store persistent data
-        <li>Fetch photo from disk and display
-      </ul> 
-      <img src="pictures/taking-photo/thumbsup.jpg" style="position:absolute;top:120px;left:300px;z-index:-1;opacity:0.4;">
-      <small class="credits">
-        Photo: <a href="https://www.flickr.com/photos/vegaseddie/5700609302">vegaseddie</a>
-      </small>
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <!--
-  <div id="template" class="slide"><div>
-    <section>
-      <header>
-        <h2></h2>
-      </header>
-      <ul>
-        <li>
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="template" class="slide"><div>
-    <section>
-      <header>
-        <h2></h2>
-      </header>
-      <ul>
-        <li>
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-  -->
 
   <!--
   <div id="template" class="slide"><div>
