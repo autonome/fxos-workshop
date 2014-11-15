@@ -30,17 +30,148 @@
     </section>
   </div></div>
 
-  <div id="template" class="slide"><div>
+  <div id="deployment" class="slide"><div>
     <section>
       <header>
         <h2>Deployment</h2>
       </header>
       <ul>
-        <li>Types
-        <li>Audience
-        <li>Device
+        <li>Direct to device from WebIDE
+        <li>Install hosted from website
+        <li>Install packaged from website
         <li>Phonegap/Cordova
-      </ul> 
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="install-webide" class="slide"><div>
+    <section>
+      <header>
+        <h2>Direct to Device from WebIDE</h2>
+      </header>
+      <ul>
+        <li>You know how to do this!
+        <li>Viable deployment path due to Android expections
+        <li>Experiment with bulk installs
+        <li>Write Firefox add-ons for it
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="install-hosted" class="slide"><div>
+    <section>
+      <header>
+        <h2>Install Hosted App from Website</h2>
+      </header>
+      <ul>
+        <li>API can run anywhere in any Firefox or FxOS
+        <li>Create install.html
+        <li>Add code from next slide and test
+        <li>(Try installing on desktop &amp; Android too...)
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="install-hosted-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Install - Code</h2>
+      </header>
+        <pre><xmp>
+        var manifestURL = "http://yoursite.com/manifest.webapp";
+        var installapp = navigator.mozApps.install(manifestURL);
+        installapp.onsuccess = function(data) {
+          console.log("App is installed!");
+        };
+        installapp.onerror = function() {
+         console.log("App wasn't installed :(", installapp.error);
+        };
+        </xmp></pre>
+      <footer class="notes">
+        Installing applications from the web is possible by using the open web apps API, which is part of the WebAPI work in Mozilla. You can test if navigator.mozApps is supported and then create a button that calls the install method pointing to the URL of the manifest file of the app to be installed. You then get onsuccess and onerror handlers to deal with the returned objects of the install process. This means that any mobile friendly web site can be turned into an app in a few minutes, and that all the work you put into making your sites found in search engines wasn't wasted, but actually is now advertising for your app.
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="installed-packaged" class="slide"><div>
+    <section>
+      <header>
+        <h2>Install Packaged App from Website</h2>
+      </header>
+      <ul>
+        <li>Create HTML file and JS code as before
+        <li>Call installPackage() instead of install()
+        <li>Manifest is smaller - see next slide
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="install-packaged-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>Mini-manifest for Packaged apps</h2>
+      </header>
+        <pre><xmp>
+          {
+            "name": "My sample app",
+            "package_path" : "http://mysite.com/app.zip",
+            "version": "1",
+            "developer": {
+              "name": "A. Developer",
+              "url": "http://mysite.com"
+            }
+          }
+        </xmp></pre>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="own-marketplace" class="slide"><div>
+    <section>
+      <header>
+        <h2>Run Your Own Marketplace</h2>
+      </header>
+      <ul>
+        <li>All APIs documented on MDN
+        <li>https://developer.mozilla.org/en-US/Marketplace/Marketplace_APIs
+        <li>Security policy still in place on devices
+        <li>navigator.mozApps.checkInstalled / navigator.mozApps.getInstalled
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="moz-marketplace" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox Marketplace</h2>
+      </header>
+      <img src="pictures/deployment/marketplace.png" class="middle" width="250" alt="Firefox OS">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="elsewhere" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox, Firefox Android, Play Store, Apple App Store</h2>
+      </header>
+      <ul>
+        <li>These APIs work on Firefox on desktop
+        <li>And Firefox for Android!
+        <li>Use tools like Phonegap to package and deploy for Android/iOS
+      </ul>
       <footer class="notes">
       </footer>
     </section>

@@ -117,14 +117,16 @@
         <h2>Getting your data with localForage</h2>
       </header>
       <pre><xmp>
-      var photos = {};
+      var photoDB = {};
       localforage.getItem("photos").then(function (result) {
         if (result) {
-          photos = result;
+          photoDB = result;
           // we'll print photos here next
         }
         else {
-          localforage.setItem("photos", photos);
+          localforage.setItem("photos", photoDB, function(){
+            // saved to db!
+          });
         }
       });
       </xmp></pre> 
@@ -139,8 +141,9 @@
         <h2>Storing data with localForage</h2>
       </header>
       <pre><xmp>
-      photos[ photo.name ] = photo;
-      localforage.setItem("photos", photos, function () {
+      // in your onsuccess handler...
+      photoDB[ photo.blob.name ] = photo;
+      localforage.setItem("photos", photoDB, function () {
         alert("Photo saved.");
       });
       </xmp></pre> 
@@ -155,8 +158,10 @@
         <h2>Displaying all photos</h2>
       </header>
       <pre><xmp>
-      for (var name in photos) {
-        var photo = photos[name]; 
+      // Put this inside your photoDB
+      // initialization code...
+      for (var name in photoDB) {
+        var photo = photoDB[name]; 
         var img = document.createElement('img');
         img.src = URL.createObjectURL(photo.blob);
         var list = document.querySelector('.list');

@@ -195,7 +195,7 @@
         <li><code>this.result</code> is an object
         <li>That object is defined by the Activity
         <li>It will have properties specific to the Activity
-        <li>Camera has set <code>this.result.photo</code> to a File object
+        <li>Camera has set <code>this.result.blob</code> to a File object
         <li>It represents the actual file the camera wrote to the SD card
       </ul> 
       <footer class="notes">
@@ -230,6 +230,7 @@
           var photo = this.result;
           var img = document.createElement('img');
           img.src = URL.createObjectURL(photo.blob);
+          // eg: <div class="list"></div>
           var list = document.querySelector('.list');
           list.appendChild(img);
         };

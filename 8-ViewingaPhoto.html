@@ -36,26 +36,9 @@
         <h2>What we'll cover...</h2>
       </header>
       <ul>
-        <li>Viewing a photo
+        <li>Viewing a photo in a new view
         <li>Deleting a photo
         <li>Sharing a photo
-        <li>Photographing a photo
-        <li>Ok, not that last one
-      </ul> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="open" class="slide"><div>
-    <section>
-      <header>
-        <h2>Open a Photo</h2>
-      </header>
-      <ul>
-        <li>In a new window
-        <li>Or a lightbox
-        <li>... or a suprising animation
       </ul> 
       <footer class="notes">
       </footer>
@@ -81,7 +64,7 @@
   <div id="card-markup" class="slide"><div>
     <section>
       <header>
-        <h2>Photo Card - Markup</h2>
+        <h2>Photo Card - Markup for card.html</h2>
       </header>
       <pre><xmp>
         <div class="card">
@@ -118,6 +101,18 @@
       <header>
         <h2>Device Storage Permissions</h2>
       </header>
+      <pre><xmp>
+        "permissions": {
+            "device-storage:sdcard": {
+                "access": "readwrite",
+                "description": "SDCard read/write files."
+            },  
+            "device-storage:pictures": {
+                "access": "readwrite",
+                "description": "Picture storage read/write."
+            }   
+        },  
+      </xmp></pre>
       <footer class="notes">
       </footer>
     </section>
