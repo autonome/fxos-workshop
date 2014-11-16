@@ -12,6 +12,7 @@
   <header class="caption">
     <h1><a href="0-Index.html">Firefox OS Intensive Workshop</a></h1>
     <h2>Interacting with Photos</h2>
+    <p class="footer">http://autonome.github.io/fxos-workshop/</p>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
   <aside class="talkdescription">
@@ -81,14 +82,16 @@
   <div id="show-code" class="slide"><div>
     <section>
       <header>
-        <h2>Open a Photo - Code</h2>
+        <h2>Open a Photo - new file: card.js</h2>
       </header>
       <pre><xmp>
       var photoid = window.location.hash.substr(1);
+      var photoDB = null;
       var photo = null;
       var cardimg = document.getElementById("cardimg")
       localforage.getItem("photos").then(function (result) {
-        photo = result[photoid];
+        photoDB = result
+        photo = photoDB[photoid];
         var url = URL.createObjectURL(photo.blob);
         cardimg.setAttribute("src", url);
       });
@@ -131,7 +134,8 @@
         <li>Requires permission
         <li>"pictures" to get photo references
         <li>Look up photo by the path we stored in localForage
-        <li>So add a new button with a click handler
+        <li>Add a new button to card.html
+        <li>Add a click handler for the button in card.js
         <li>(Familiar pattern yet?!)
       </ul> 
       <footer class="notes">
@@ -144,20 +148,31 @@
   <div id="deleting-code" class="slide"><div>
     <section>
       <header>
-        <h2>Delete a Photo - Code</h2>
+        <h2>Delete a Photo - card.js</h2>
       </header>
       <pre><xmp>
-        var photos = navigator.getDeviceStorage("pictures");
-        var trydelete = photos.delete(photo.blob.name);
+        var storage = navigator.getDeviceStorage("pictures");
+        var trydelete = storage.delete(photo.blob.name);
         trydelete.onsuccess = function () {
-          delete photos[photoid];
-          localforage.setItem("photos", photos);
+          delete photoDB[photo.blob.name];
+          localforage.setItem("photos", photoDB);
           window.location.replace("index.html");
         };
         trydelete.onerror = function () {
-          alert("Unable to delete photo");
+          console.log(this.error);
         };
       </xmp></pre> 
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="share-screenshot" class="slide"><div>
+    <section>
+      <header>
+        <h2>Share Activity!</h2>
+      </header>
+      <img src="pictures/interact-photo/share.png" class="middle" width="300" alt="Firefox OS">
       <footer class="notes">
       </footer>
     </section>
@@ -172,6 +187,9 @@
         <li>Another Web Activity!
         <li>"share"
         <li>Send the blob from our cache
+        <li>Here we go again..
+        <li>Add a share button to card.html
+        <li>Add a click button to card.js
       </ul> 
       <footer class="notes">
       </footer>
@@ -185,7 +203,7 @@
       </header>
       <pre><xmp>
       // From your cache
-      var blob = photos[id].blob;
+      var blob = photo.blob;
       new MozActivity({
         name: "share",
         data: {
@@ -195,17 +213,6 @@
         }
       });
       </xmp></pre> 
-      <footer class="notes">
-      </footer>
-    </section>
-  </div></div>
-
-  <div id="share-screenshot" class="slide"><div>
-    <section>
-      <header>
-        <h2>Share Activity View</h2>
-      </header>
-      <img src="pictures/interact-photo/share.png" class="middle" width="300" alt="Firefox OS">
       <footer class="notes">
       </footer>
     </section>

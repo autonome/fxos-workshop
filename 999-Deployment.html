@@ -12,6 +12,7 @@
   <header class="caption">
     <h1><a href="0-Index.html">Firefox OS Intensive Workshop</a></h1>
     <h2>Deployment</h2>
+    <p class="footer">http://autonome.github.io/fxos-workshop/</p>
     <p class="footer">Dietrich Ayala, <a href="http://twitter.com/dietrich">@dietrich</a> or <a href="mailto:">dietrich@mozilla.com</a></p>
   </header>
   <aside class="talkdescription">
@@ -84,13 +85,13 @@
         <h2>Install - Code</h2>
       </header>
         <pre><xmp>
-        var manifestURL = "http://yoursite.com/manifest.webapp";
-        var installapp = navigator.mozApps.install(manifestURL);
-        installapp.onsuccess = function(data) {
+        var manifestURL = "http://abc.com/manifest.webapp";
+        var install = navigator.mozApps.install(manifestURL);
+        install.onsuccess = function(data) {
           console.log("App is installed!");
         };
-        installapp.onerror = function() {
-         console.log("App wasn't installed :(", installapp.error);
+        install.onerror = function() {
+         console.log("App not installed", install.error);
         };
         </xmp></pre>
       <footer class="notes">
