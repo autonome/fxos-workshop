@@ -51,9 +51,11 @@
         <h2>Open Photo in a New View - Code</h2>
       </header>
       <pre><xmp>
+      img.setAttribute('data-key', photo.blob.name)
       img.addEventListener("click", function () {
         // Send photo name as the hash fragment
-        window.location.replace("card.html#" + photo.name);
+        var key = this.dataset.key;
+        window.location.replace("card.html#" + key);
       }, false);
       </xmp></pre> 
       <footer class="notes">
